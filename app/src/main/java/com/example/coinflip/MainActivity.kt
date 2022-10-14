@@ -1,5 +1,6 @@
 package com.example.coinflip
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
@@ -22,6 +23,50 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         init()
+
+        var isHead : Boolean = false
+        var isTail : Boolean = false
+        var throws : Int = 0
+        var win : Int = 0
+        var lose : Int = 0
+        var rnd : Int = 0
+        guessHead.setOnClickListener{
+            isHead = true
+            throws++
+            rnd = (1..2).random()
+            if(rnd == 1){
+                win++
+                image.setImageResource(R.drawable.heads)
+                guesses.setText("Dobások: " + throws.toString())
+                Toast.makeText(this@MainActivity, "A dobás értéke fej!", Toast.LENGTH_SHORT).show()
+                wins.setText("Győzelmek: " + win.toString())
+            }else{
+                lose++
+                image.setImageResource(R.drawable.tails)
+                guesses.setText("Dobások: " + throws.toString())
+                Toast.makeText(this@MainActivity, "A dobás értéke írás!", Toast.LENGTH_SHORT).show()
+                losses.setText("Vereségek: " + lose.toString())
+            }
+        }
+
+        guessTail.setOnClickListener{
+            isTail = true
+            throws++
+            rnd = (1..2).random()
+            if(rnd == 2){
+                win++
+                image.setImageResource(R.drawable.heads)
+                guesses.setText("Dobások: " + throws.toString())
+                Toast.makeText(this@MainActivity, "A dobás értéke írás!", Toast.LENGTH_SHORT).show()
+                wins.setText("Győzelmek: " + win.toString())
+            }else{
+                lose++
+                image.setImageResource(R.drawable.tails)
+                guesses.setText("Dobások: " + throws.toString())
+                Toast.makeText(this@MainActivity, "A dobás értéke fej!", Toast.LENGTH_SHORT).show()
+                losses.setText("Vereségek: " + lose.toString())
+            }
+        }
 
     }
 
